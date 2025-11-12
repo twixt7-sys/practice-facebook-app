@@ -1,9 +1,10 @@
 <div>
     <h1>Sign-up</h1>
     <form #f="ngForm">
-        <input type="text" name="username" ngModel required #username="ngModel"/>
-        <input type="password" name="password" ngModel required #password="ngModel"/>
+        <input type="text" name="username" required [(ngModel)]="username"/>
+        <input type="password" name="password" ngModel required [(ngModel)]="password"/>
         <button (click)="registerUser()">Register</button>
         <button (click)="backToLogin()">Back to Log-in</button>
     </form>
+    {{ message }}
 </div>

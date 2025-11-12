@@ -5,6 +5,7 @@ import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-signup',
+  standalone: true,
   imports: [FormsModule],
   templateUrl: './signup.html',
   styleUrl: './signup.scss',
@@ -12,11 +13,11 @@ import { AuthService } from '../../core/services/auth.service';
 export class Signup {
   @Input() username: string = "";
   @Input() password: string = "";
-  @Input() message: string = "";
+  message: string = "";
   constructor(private auth: AuthService, private router: Router) {
 
   }
-  registerUser() {
+    registerUser() {
     this.auth.signup({
       username: this.username,
       password: this.password
@@ -25,14 +26,16 @@ export class Signup {
         this.message = res.message;
         if (res.status === 'success') {
           localStorage.setItem('userId', res.id);
+          this.message = 'Login success';
           this.router.navigate(['/home']);
         } else {
-          this.message = 'failed'
+          this.message = 'Signup failed';
         }
       },
-      error: (err) => this.message = 'Error: ' + err.message
-    })
-    this.router.navigate(['/home'])
+      error: (err) => {
+        this.message = 'Error: ' + err.message;
+      }
+    });
   }
   backToLogin() {
     this.router.navigate(['/login'])

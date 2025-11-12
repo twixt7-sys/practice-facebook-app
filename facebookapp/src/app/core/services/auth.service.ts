@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private baseUrl = 'TO CHANGE';
+  private baseUrl = 'http://localhost/ads-edp/';
 
   constructor(private http: HttpClient) {}
 
@@ -20,6 +20,6 @@ export class AuthService {
   }
 
   home(): Observable<any> {
-    return this.http.get(`${this.baseUrl}home.php`);
+    return this.http.get(`${this.baseUrl}home.php?id=`);
   }
 }
