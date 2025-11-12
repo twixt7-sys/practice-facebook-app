@@ -20,6 +20,6 @@ export class AuthService {
   }
 
   home(): Observable<any> {
-    return this.http.get(`${this.baseUrl}home.php?id=`);
+    return this.http.get(`${this.baseUrl}home.php`);
   }
 }

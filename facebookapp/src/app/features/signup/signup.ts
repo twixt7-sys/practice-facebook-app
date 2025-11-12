@@ -26,7 +26,6 @@ export class Signup {
         this.message = res.message;
         if (res.status === 'success') {
           localStorage.setItem('userId', res.id);
-          this.message = 'Login success';
           this.router.navigate(['/home']);
         } else {
           this.message = 'Signup failed';
