@@ -26,14 +26,12 @@ export class Login {
       password: this.password
     }).subscribe({
       next: (res) => {
-        console.log(res)
         this.message = res.message;
         if (res.status === 'success') {
-          console.log(res.status)
           localStorage.setItem('userId', res.id);
           this.router.navigate(['/home']);
         } else {
-          this.message = 'failed'
+          this.message = 'login failed'
         }
       },
       error: (err) => this.message = 'Error: ' + err.message
