@@ -30,6 +30,8 @@ export class Login {
         if (res.status === 'success') {
           localStorage.setItem('userId', res.id);
           this.router.navigate(['/home']);
+        } else {
+          this.message = 'failed'
         }
       },
       error: (err) => this.message = 'Error: ' + err.message
