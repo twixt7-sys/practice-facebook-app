@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule} from '@angular/forms';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,12 +12,28 @@ import { FormsModule} from '@angular/forms';
 })
 
 export class Login {
-  constructor(private router: Router) {
+  @Input() username: string = "";
+  @Input() password: string = "";
+  @Input() message: string = "";
+
+  constructor(private auth: AuthService, private router: Router) {
 
   }
 
   loginUser() {
-    this.router.navigate(['/home']);
+    this.auth.login({
+      username: this.username,
+      password: this.password
+    }).subscribe({
+      next: (res) => {
+        this.message = res.message;
+        if (res.status === 'success') {
+          localStorage.setItem('userId', res.id);
+          this.router.navigate(['/home']);
+        }
+      },
+      error: (err) => this.message = 'Error: ' + err.message
+    });
   }
 
   signupUser() {
