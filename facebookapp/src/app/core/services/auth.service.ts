@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private baseUrl = 'https://your-server-url.com/'; // <-- replace with your backend URL
+  private baseUrl = 'TO CHANGE';
 
   constructor(private http: HttpClient) {}
 
