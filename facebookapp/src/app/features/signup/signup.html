@@ -1,4 +1,9 @@
-<form action="">
-    <input type="text">
-    <input type="text">
-</form>
+<div>
+    <h1>Sign-up</h1>
+    <form #f="ngForm">
+        <input type="text" name="username" ngModel required #username="ngModel"/>
+        <input type="password" name="password" ngModel required #password="ngModel"/>
+        <button (click)="registerUser()">Register</button>
+        <button (click)="backToLogin()">Back to Log-in</button>
+    </form>
+</div>

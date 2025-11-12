@@ -1,8 +1,9 @@
 <div>
     <h1>Log-in</h1>
-    <form action="">
-    <input type="text" value="">
-    <input type="password" value="">
-    <input type="submit">
-</form>
+    <form #f="ngForm">
+        <input type="text" name="username" ngModel required #username="ngModel"/>
+        <input type="password" name="password" ngModel required #password="ngModel"/>
+        <button (click)="loginUser()">Login</button>
+        <button (click)="signupUser()">Signup</button>
+    </form>
 </div>

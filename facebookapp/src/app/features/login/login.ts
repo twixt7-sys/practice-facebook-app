@@ -1,22 +1,25 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  standalone: true,
+  imports: [FormsModule],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
+
 export class Login {
   constructor(private router: Router) {
 
   }
 
   loginUser() {
-  this.router.navigate(['/home']);
+    this.router.navigate(['/home']);
   }
-  signupUser() {
 
-  this.router.navigate(['/signup']);
+  signupUser() {
+    this.router.navigate(['/signup']);
   }
 }
