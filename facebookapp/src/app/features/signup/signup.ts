@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/services/auth.service';
 
 @Component({
@@ -11,19 +11,21 @@ import { AuthService } from '../../core/services/auth.service';
   styleUrl: './signup.scss',
 })
 export class Signup {
-  @Input() username: string = "";
-  @Input() password: string = "";
-  message: string = "";
-  constructor(private auth: AuthService, private router: Router) {
 
-  }
-    registerUser() {
-    this.auth.signup({
+  username = '';
+  password = '';
+  message = '';
+
+  constructor(private auth: AuthService, private router: Router) {}
+
+  registerUser() {
+    const payload = {
       username: this.username,
       password: this.password
-    }).subscribe({
-      next: (res) => {
-        this.message = res.message;
+    };
+
+    this.auth.signup(payload).subscribe({
+      next: res => {
         if (res.status === 'success') {
           localStorage.setItem('userId', res.id);
           this.router.navigate(['/home']);
@@ -31,12 +33,13 @@ export class Signup {
           this.message = 'Signup failed';
         }
       },
-      error: (err) => {
+      error: err => {
         this.message = 'Error: ' + err.message;
       }
     });
   }
+
   backToLogin() {
-    this.router.navigate(['/login'])
+    this.router.navigate(['/login']);
   }
 }
