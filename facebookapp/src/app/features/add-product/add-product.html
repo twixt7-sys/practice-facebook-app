@@ -1,0 +1,12 @@
+<div>
+    <h1>Add Product</h1>
+    <form #f="ngForm">
+        <input type="text" name="name" required [(ngModel)]="name"/>
+        <input type="text" name="category" required [(ngModel)]="category"/>
+        <input type="text" name="price" required [(ngModel)]="price"/>
+        <input type="text" name="description" required [(ngModel)]="description"/>
+        <button (click)="submitProduct()">Submit</button>
+    </form>
+    <button (click)="backToHome()">Back To Home</button>
+    <h1>{{message}}</h1>
+</div>
